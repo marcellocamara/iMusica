@@ -2,19 +2,31 @@
 
     <string name="app_name">iMusica</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <!-- Login -->
+    <string name="login">Login</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="remember">Remember me</string>
-    <string name="login">Login</string>
     <string name="click_to_register">Click here to register</string>
 
     <!-- Register -->
     <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="confirm_password">Confirm password</string>
+    <string name="invalid_email">Fill with a valid e-mail.</string>
+    <string name="blank_email">E-mail cannot be blank.</string>
+    <string name="blank_name">Name cannot be blank.</string>
+    <string name="blank_password">Password cannot be blank.</string>
+    <string name="password_dont_match">Passwords do not match.</string>
+    <string name="register_success">Successfully registered.</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Dialogs / Alerts -->
+    <string name="close">Close</string>
+    <string name="loading">Loading…</string>
+    <string name="failure">Oops! Something went wrong.</string>
 
 </resources>
