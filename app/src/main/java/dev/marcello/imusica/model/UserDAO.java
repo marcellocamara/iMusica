@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import dev.marcello.imusica.R;
 import dev.marcello.imusica.ui.ITaskListener;
 import dev.marcello.imusica.ui.login.ILoginContract;
+import dev.marcello.imusica.ui.main.IMainContract;
 import dev.marcello.imusica.ui.register.IRegisterContract;
 
 /**
@@ -14,7 +18,7 @@ import dev.marcello.imusica.ui.register.IRegisterContract;
  * 2019
  */
 
-public class UserDAO implements IRegisterContract.Model, ILoginContract.Model {
+public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, IMainContract.Model {
 
     private ITaskListener.User taskListener;
     private IDatabaseCRUD<UserModel> database;
@@ -81,6 +85,27 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model {
         }
     }
 
+    @Override
+    public void DoLogout(){
+        try{
+            DoDeleteSharedPreferences();
+            taskListener.OnSuccess();
+        }catch (Exception e){
+            taskListener.OnFailure(e.getMessage());
+        }
+    }
+
+    @Override
+    public Map<String, String> DoGetUserData() {
+        UserModel user = DoGetSharedPreferences();
+        Map<String, String> hashMap = new HashMap<>();
+        hashMap.put("id", String.valueOf(user.getId()));
+        hashMap.put("email", user.getEmail());
+        hashMap.put("name", user.getName());
+        hashMap.put("password", user.getPassword());
+        return hashMap;
+    }
+
     private void DoSaveSharedPreferences(UserModel user) {
         sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -89,6 +114,20 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model {
         editor.putString("name", user.getName());
         editor.putString("password", user.getPassword());
         editor.apply();
+    }
+
+    private void DoDeleteSharedPreferences(){
+        context.getSharedPreferences("Auth", Context.MODE_PRIVATE).edit().clear().apply();
+    }
+
+    private UserModel DoGetSharedPreferences(){
+        sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        UserModel user = new UserModel();
+        user.setId(sharedPreferences.getInt("id", -1));
+        user.setEmail(sharedPreferences.getString("email", ""));
+        user.setName(sharedPreferences.getString("name", ""));
+        user.setPassword(sharedPreferences.getString("password", ""));
+        return user;
     }
 
 }
