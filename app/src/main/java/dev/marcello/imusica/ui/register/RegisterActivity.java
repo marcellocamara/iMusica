@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
 
         ButterKnife.bind(this);
 
-        presenter = new RegisterPresenter(this);
+        presenter = new RegisterPresenter(this, this);
 
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle(register);
@@ -135,8 +135,8 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
     }
 
     @Override
-    public void OnRegisterFailure() {
-        builder.setMessage(R.string.failure);
+    public void OnRegisterFailure(String message) {
+        builder.setMessage(message);
         builder.setPositiveButton(close, null);
         builder.show();
     }

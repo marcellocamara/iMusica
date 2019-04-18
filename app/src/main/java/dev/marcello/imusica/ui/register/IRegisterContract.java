@@ -26,11 +26,11 @@ public interface IRegisterContract {
 
         void OnRegisterSuccess();
 
-        void OnRegisterFailure();
+        void OnRegisterFailure(String message);
 
     }
 
-    interface Presenter extends ITaskListener {
+    interface Presenter extends ITaskListener.User {
 
         void OnRegisterRequest(String email, String name, String password1, String password2);
 
@@ -38,7 +38,7 @@ public interface IRegisterContract {
 
     interface Model {
 
-        void DoRegister();
+        void DoRegister(String email, String name, String password);
 
     }
 

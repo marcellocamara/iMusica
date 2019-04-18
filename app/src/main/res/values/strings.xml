@@ -19,6 +19,7 @@
     <string name="blank_password">Password cannot be blank.</string>
     <string name="password_dont_match">Passwords do not match.</string>
     <string name="register_success">Successfully registered.</string>
+    <string name="email_already_registered">E-mail already registered.</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

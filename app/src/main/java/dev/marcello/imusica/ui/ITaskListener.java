@@ -7,8 +7,12 @@ package dev.marcello.imusica.ui;
 
 public interface ITaskListener {
 
-    void OnSuccess();
+    interface User {
 
-    void OnFailure();
+        void OnSuccess();
+
+        void OnFailure(String message);
+
+    }
 
 }
