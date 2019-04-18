@@ -66,7 +66,7 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
     }
 
     @Override
-    public void DoLogin(String email, String password, boolean remember) {
+    public void DoLogin(String email, String password) {
         UserModel user = new UserModel();
         user.setEmail(email);
         user.setPassword(password);
@@ -74,15 +74,11 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         if (cursor.getCount() == 1) {
             cursor.moveToNext();
             if (cursor.getString(3).equals(user.getPassword())) {
-                if (remember) {
-                    //Save user in SharedPreferences
-                    user.setId(cursor.getInt(0));
-                    user.setName(cursor.getString(2));
-                    DoSaveSharedPreferences(user);
-                    taskListener.OnSuccess();
-                } else {
-                    taskListener.OnSuccess();
-                }
+                //Save user in SharedPreferences
+                user.setId(cursor.getInt(0));
+                user.setName(cursor.getString(2));
+                DoSaveSharedPreferences(user);
+                taskListener.OnSuccess();
             } else {
                 taskListener.OnFailure("Wrong password.");
             }
@@ -109,6 +105,11 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         } catch (Exception e) {
             taskListener.OnFailure(e.getMessage());
         }
+    }
+
+    @Override
+    public void DoForceLogout() {
+        DoDeleteSharedPreferences();
     }
 
     @Override

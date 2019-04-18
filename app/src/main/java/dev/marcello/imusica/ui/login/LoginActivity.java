@@ -62,8 +62,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         layoutPassword.setErrorEnabled(false);
         presenter.OnLoginRequest(
                 editTextEmail.getText().toString().trim(),
-                editTextPassword.getText().toString().trim(),
-                checkBox.isChecked()
+                editTextPassword.getText().toString().trim()
         );
     }
 
@@ -92,7 +91,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
 
     @Override
     public void OnLoginSuccess() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class)
+                .putExtra("checkbox", checkBox.isChecked())
+        );
         finish();
     }
 

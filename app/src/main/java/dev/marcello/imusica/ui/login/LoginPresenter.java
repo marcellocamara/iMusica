@@ -21,10 +21,10 @@ public class LoginPresenter implements ILoginContract.Presenter {
     }
 
     @Override
-    public void OnLoginRequest(String email, String password, boolean remember) {
+    public void OnLoginRequest(String email, String password) {
         if (FormValidator(email, password)){
             view.ShowProgress();
-            model.DoLogin(email, password, remember);
+            model.DoLogin(email, password);
         }
     }
 

@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     private IMainContract.Presenter presenter;
     private AlertDialog.Builder builder;
     private TextView textViewUserName, textViewUserEmail;
+    private boolean session;
     private ProgressDialog progressDialog;
 
     @Override
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity
         Objects.requireNonNull(getSupportActionBar()).setTitle(null);
 
         presenter = new MainPresenter(this, this);
+
+        session = getIntent().getBooleanExtra("session", false);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -181,7 +184,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.OnDestroy();
+        presenter.OnDestroy(session);
     }
 
 }

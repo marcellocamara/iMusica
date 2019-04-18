@@ -26,7 +26,7 @@ public interface ILoginContract {
 
     interface Presenter extends ITaskListener.User {
 
-        void OnLoginRequest(String email, String password, boolean remember);
+        void OnLoginRequest(String email, String password);
 
         void OnCheckLoggedIn();
 
@@ -36,7 +36,7 @@ public interface ILoginContract {
 
     interface Model {
 
-        void DoLogin(String email, String password, boolean remember);
+        void DoLogin(String email, String password);
 
         void DoCheckLoggedIn();
 

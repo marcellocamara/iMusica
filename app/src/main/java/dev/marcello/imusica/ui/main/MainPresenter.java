@@ -34,7 +34,10 @@ public class MainPresenter implements IMainContract.Presenter {
     }
 
     @Override
-    public void OnDestroy() {
+    public void OnDestroy(boolean session) {
+        if (!session){
+            model.DoForceLogout();
+        }
         this.view = null;
     }
 

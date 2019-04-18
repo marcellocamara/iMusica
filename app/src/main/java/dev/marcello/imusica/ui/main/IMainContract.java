@@ -28,13 +28,15 @@ public interface IMainContract {
 
         void OnLogoutRequest();
 
-        void OnDestroy();
+        void OnDestroy(boolean session);
 
     }
 
     interface Model {
 
         void DoLogout();
+
+        void DoForceLogout();
 
         Map<String, String> DoGetUserData();
 
