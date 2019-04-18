@@ -1,5 +1,7 @@
 package dev.marcello.imusica.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import dev.marcello.imusica.R;
+import dev.marcello.imusica.ui.login.LoginActivity;
 
 /**
  * Marcello Câmara
@@ -58,8 +61,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_settings : {
-                Toast.makeText(this, "Settings pressed.", Toast.LENGTH_SHORT).show();
+            case R.id.action_logout : {
+                getSharedPreferences("Auth", Context.MODE_PRIVATE).edit().clear().apply();
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
             }
         }
