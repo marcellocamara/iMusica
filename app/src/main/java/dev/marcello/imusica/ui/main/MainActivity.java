@@ -26,7 +26,7 @@ import dev.marcello.imusica.R;
 import dev.marcello.imusica.ui.home.HomeFragment;
 import dev.marcello.imusica.ui.language.LanguageFragment;
 import dev.marcello.imusica.ui.login.LoginActivity;
-import dev.marcello.imusica.ui.profile.ProfileFragment;
+import dev.marcello.imusica.ui.register.RegisterActivity;
 
 /**
  * Marcello Câmara
@@ -132,9 +132,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.profile: {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.frameLayout, new ProfileFragment()).commit();
+                startActivity(new Intent(this, RegisterActivity.class)
+                        .putExtra("edit", true)
+                );
                 break;
             }
         }
