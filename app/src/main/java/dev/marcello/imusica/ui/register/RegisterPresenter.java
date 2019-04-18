@@ -13,7 +13,7 @@ import dev.marcello.imusica.model.UserDAO;
 public class RegisterPresenter implements IRegisterContract.Presenter {
 
     private IRegisterContract.View view;
-    private UserDAO model;
+    private IRegisterContract.Model model;
 
     public RegisterPresenter(IRegisterContract.View view, Context context) {
         this.view = view;
