@@ -12,10 +12,11 @@
             android:id="@+id/language"
             android:icon="@drawable/ic_language"
             android:title="@string/language" />
-        <item
-            android:id="@+id/profile"
-            android:icon="@drawable/ic_person"
-            android:title="@string/profile" />
     </group>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_person"
+        android:title="@string/profile" />
 
 </menu>

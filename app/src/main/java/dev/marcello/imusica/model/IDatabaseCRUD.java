@@ -13,4 +13,6 @@ public interface IDatabaseCRUD<T> {
 
     Cursor Read(T obj);
 
+    Integer Update(T obj);
+
 }

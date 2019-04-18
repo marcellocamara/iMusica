@@ -52,4 +52,13 @@ public class Database extends SQLiteOpenHelper implements IDatabaseCRUD<UserMode
         return sqLiteDatabase.query(users, null, "email = ?", args, null, null, null);
     }
 
+    @Override
+    public Integer Update(UserModel obj) {
+        ContentValues values = new ContentValues();
+        values.put("name", obj.getName());
+        values.put("password", obj.getPassword());
+        String[] args = {String.valueOf(obj.getId())};
+        return sqLiteDatabase.update(users, values,"id = ?", args);
+    }
+
 }

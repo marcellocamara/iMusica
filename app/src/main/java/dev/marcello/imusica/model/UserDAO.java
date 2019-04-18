@@ -50,6 +50,22 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
     }
 
     @Override
+    public void DoUpdate(Map<String, String> user) {
+        UserModel updatedUser = new UserModel(
+                user.get("email"),
+                user.get("name"),
+                user.get("password")
+        );
+        updatedUser.setId(Integer.valueOf(user.get("id")));
+        if (database.Update(updatedUser) == 1) {
+            DoUpdateSharedPreferences(user);
+            taskListener.OnSuccess();
+        } else {
+            taskListener.OnFailure(context.getString(R.string.update_error));
+        }
+    }
+
+    @Override
     public void DoLogin(String email, String password, boolean remember) {
         UserModel user = new UserModel();
         user.setEmail(email);
@@ -58,16 +74,16 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         if (cursor.getCount() == 1) {
             cursor.moveToNext();
             if (cursor.getString(3).equals(user.getPassword())) {
-                if (remember){
+                if (remember) {
                     //Save user in SharedPreferences
                     user.setId(cursor.getInt(0));
                     user.setName(cursor.getString(2));
                     DoSaveSharedPreferences(user);
                     taskListener.OnSuccess();
-                }else {
+                } else {
                     taskListener.OnSuccess();
                 }
-            }else {
+            } else {
                 taskListener.OnFailure("Wrong password.");
             }
         } else {
@@ -80,17 +96,17 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString("email", "");
         String password = sharedPreferences.getString("password", "");
-        if ( !(email.isEmpty()) && !(password.isEmpty()) ){
+        if (!(email.isEmpty()) && !(password.isEmpty())) {
             taskListener.OnSuccess();
         }
     }
 
     @Override
-    public void DoLogout(){
-        try{
+    public void DoLogout() {
+        try {
             DoDeleteSharedPreferences();
             taskListener.OnSuccess();
-        }catch (Exception e){
+        } catch (Exception e) {
             taskListener.OnFailure(e.getMessage());
         }
     }
@@ -116,11 +132,11 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         editor.apply();
     }
 
-    private void DoDeleteSharedPreferences(){
+    private void DoDeleteSharedPreferences() {
         context.getSharedPreferences("Auth", Context.MODE_PRIVATE).edit().clear().apply();
     }
 
-    private UserModel DoGetSharedPreferences(){
+    private UserModel DoGetSharedPreferences() {
         sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         UserModel user = new UserModel();
         user.setId(sharedPreferences.getInt("id", -1));
@@ -128,6 +144,14 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         user.setName(sharedPreferences.getString("name", ""));
         user.setPassword(sharedPreferences.getString("password", ""));
         return user;
+    }
+
+    private void DoUpdateSharedPreferences(Map<String, String> user) {
+        sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("name", user.get("name"));
+        editor.putString("password", user.get("password"));
+        editor.apply();
     }
 
 }
