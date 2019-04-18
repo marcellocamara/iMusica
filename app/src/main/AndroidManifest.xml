@@ -22,7 +22,10 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

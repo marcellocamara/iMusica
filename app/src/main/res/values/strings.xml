@@ -12,4 +12,9 @@
     <string name="login">Login</string>
     <string name="click_to_register">Click here to register</string>
 
+    <!-- Register -->
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm password</string>
+
 </resources>
