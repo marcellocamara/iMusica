@@ -5,14 +5,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/option1"
-            android:title="Option 1" />
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
         <item
-            android:id="@+id/option2"
-            android:title="Option 2" />
+            android:id="@+id/language"
+            android:icon="@drawable/ic_language"
+            android:title="@string/language" />
         <item
-            android:id="@+id/option3"
-            android:title="Option 3" />
+            android:id="@+id/profile"
+            android:icon="@drawable/ic_person"
+            android:title="@string/profile" />
     </group>
 
 </menu>

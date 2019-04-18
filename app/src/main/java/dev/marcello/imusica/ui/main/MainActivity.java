@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -25,7 +24,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dev.marcello.imusica.R;
 import dev.marcello.imusica.ui.home.HomeFragment;
+import dev.marcello.imusica.ui.language.LanguageFragment;
 import dev.marcello.imusica.ui.login.LoginActivity;
+import dev.marcello.imusica.ui.profile.ProfileFragment;
 
 /**
  * Marcello Câmara
@@ -35,19 +36,14 @@ import dev.marcello.imusica.ui.login.LoginActivity;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
 
-    @BindView(R.id.navigationView)
-    protected NavigationView navigationView;
+    @BindView(R.id.navigationView) protected NavigationView navigationView;
 
-    @BindView(R.id.drawerLayout)
-    protected DrawerLayout drawerLayout;
+    @BindView(R.id.drawerLayout) protected DrawerLayout drawerLayout;
 
-    @BindView(R.id.toolbar)
-    protected Toolbar toolbar;
+    @BindView(R.id.toolbar) protected Toolbar toolbar;
 
-    @BindString(R.string.logout)
-    protected String logout;
-    @BindString(R.string.close)
-    protected String close;
+    @BindString(R.string.logout) protected String logout;
+    @BindString(R.string.close) protected String close;
 
     private IMainContract.Presenter presenter;
     private AlertDialog.Builder builder;
@@ -81,9 +77,6 @@ public class MainActivity extends AppCompatActivity
         textViewUserName = headerView.findViewById(R.id.textViewUserName);
         textViewUserEmail = headerView.findViewById(R.id.textViewUserEmail);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
-        navigationView.setCheckedItem(R.id.option1);
-
         builder = new AlertDialog.Builder(this);
         builder.setTitle(logout);
         builder.setCancelable(false);
@@ -91,6 +84,9 @@ public class MainActivity extends AppCompatActivity
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+        navigationView.setCheckedItem(R.id.home);
     }
 
     @Override
@@ -123,16 +119,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.option1: {
-                Toast.makeText(this, "Option1 pressed.", Toast.LENGTH_SHORT).show();
+            case R.id.home: {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameLayout, new HomeFragment()).commit();
                 break;
             }
-            case R.id.option2: {
-                Toast.makeText(this, "Option2 pressed.", Toast.LENGTH_SHORT).show();
+            case R.id.language: {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameLayout, new LanguageFragment()).commit();
                 break;
             }
-            case R.id.option3: {
-                Toast.makeText(this, "Option3 pressed.", Toast.LENGTH_SHORT).show();
+            case R.id.profile: {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameLayout, new ProfileFragment()).commit();
                 break;
             }
         }
