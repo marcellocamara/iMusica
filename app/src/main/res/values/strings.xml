@@ -5,4 +5,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- Login -->
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="remember">Remember me</string>
+    <string name="login">Login</string>
+    <string name="click_to_register">Click here to register</string>
+
 </resources>

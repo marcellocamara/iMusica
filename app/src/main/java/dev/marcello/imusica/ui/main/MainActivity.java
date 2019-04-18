@@ -1,4 +1,4 @@
-package dev.marcello.imusica;
+package dev.marcello.imusica.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import dev.marcello.imusica.R;
 
 /**
  * Marcello Câmara

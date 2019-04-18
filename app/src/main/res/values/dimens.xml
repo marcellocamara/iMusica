@@ -4,4 +4,9 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
 
+    <dimen name="CornerRadius">16dp</dimen>
+
+    <dimen name="leftGuideLine">0.05</dimen>
+    <dimen name="rightGuideLine">0.95</dimen>
+
 </resources>
