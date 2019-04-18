@@ -34,6 +34,8 @@ public interface IRegisterContract {
 
         void OnEditRequestFailure();
 
+        void OnAccountDeleted();
+
     }
 
     interface Presenter extends ITaskListener.User {
@@ -41,6 +43,8 @@ public interface IRegisterContract {
         void OnRegisterRequest(String email, String name, String password1, String password2);
 
         void OnEditRequest(String email, String name, String password1, String password2);
+
+        void OnDeleteRequest(String email);
 
         void OnVerifyEditMode(boolean isEditMode);
 
@@ -51,6 +55,8 @@ public interface IRegisterContract {
         void DoRegister(String email, String name, String password);
 
         void DoUpdate(Map<String, String> user);
+
+        void DoDelete(String email);
 
         Map<String, String> DoGetUserData();
 

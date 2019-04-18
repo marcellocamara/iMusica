@@ -61,4 +61,9 @@ public class Database extends SQLiteOpenHelper implements IDatabaseCRUD<UserMode
         return sqLiteDatabase.update(users, values,"id = ?", args);
     }
 
+    @Override
+    public Integer Delete(UserModel obj) {
+        return sqLiteDatabase.delete(users, "email = ?", new String[]{obj.getEmail()});
+    }
+
 }

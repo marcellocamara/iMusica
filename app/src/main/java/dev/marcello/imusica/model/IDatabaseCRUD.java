@@ -15,4 +15,6 @@ public interface IDatabaseCRUD<T> {
 
     Integer Update(T obj);
 
+    Integer Delete(T obj);
+
 }

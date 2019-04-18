@@ -28,6 +28,8 @@ public interface IMainContract {
 
         void OnLogoutRequest();
 
+        void OnVerifyUserDeleted(boolean value);
+
         void OnDestroy(boolean session);
 
     }

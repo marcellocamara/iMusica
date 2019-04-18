@@ -50,6 +50,12 @@ public class RegisterPresenter implements IRegisterContract.Presenter {
     }
 
     @Override
+    public void OnDeleteRequest(String email) {
+        view.ShowProgress();
+        model.DoDelete(email);
+    }
+
+    @Override
     public void OnVerifyEditMode(boolean isEditMode) {
         if (isEditMode){
             user = new HashMap<>();
@@ -109,7 +115,11 @@ public class RegisterPresenter implements IRegisterContract.Presenter {
     public void OnFailure(String message) {
         if (view != null) {
             view.HideProgress();
-            view.OnRegisterFailure(message);
+            if (message.equals("deleted")){
+                view.OnAccountDeleted();
+            }else {
+                view.OnRegisterFailure(message);
+            }
         }
     }
 

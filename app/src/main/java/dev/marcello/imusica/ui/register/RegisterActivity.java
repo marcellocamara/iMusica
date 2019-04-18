@@ -2,6 +2,7 @@ package dev.marcello.imusica.ui.register;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -41,9 +42,13 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
 
     @BindView(R.id.btnRegister) protected Button buttonRegister;
     @BindView(R.id.btnEdit) protected Button buttonEdit;
+    @BindView(R.id.btnDelete) protected Button buttonDelete;
 
     @BindString(R.string.register) protected String register;
     @BindString(R.string.edit) protected String edit;
+    @BindString(R.string.delete) protected String delete;
+    @BindString(R.string.yes) protected String yes;
+    @BindString(R.string.no) protected String no;
     @BindString(R.string.close) protected String close;
     @BindString(R.string.invalid_email) protected String invalid_email;
     @BindString(R.string.blank_email) protected String blank_email;
@@ -53,10 +58,12 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
     @BindString(R.string.no_changes) protected String no_changes;
     @BindString(R.string.register_success) protected String register_success;
     @BindString(R.string.edit_success) protected String edit_success;
+    @BindString(R.string.delete_confirm) protected String delete_confirm;
+    @BindString(R.string.delete_success) protected String delete_success;
 
     private IRegisterContract.Presenter presenter;
     private AlertDialog.Builder builder;
-    private String title = register, builder_message = register_success;
+    private String title, builder_message;
     private ProgressDialog progressDialog;
 
     @Override
@@ -65,6 +72,9 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
         setContentView(R.layout.activity_register);
 
         ButterKnife.bind(this);
+
+        title = register;
+        builder_message = register_success;
 
         presenter = new RegisterPresenter(this, this);
         presenter.OnVerifyEditMode(getIntent().getBooleanExtra("edit", false));
@@ -110,12 +120,29 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
         );
     }
 
+    @OnClick(R.id.btnDelete)
+    public void OnButtonDeleteClick(){
+        AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+        confirm.setTitle(delete);
+        confirm.setMessage(delete_confirm);
+        confirm.setPositiveButton(yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                presenter.OnDeleteRequest(editTextEmail.getText().toString().trim());
+            }
+        });
+        confirm.setNegativeButton(no, null);
+        confirm.setCancelable(false);
+        confirm.show();
+    }
+
     @Override
     public void OnEditMode(String email, String name, String password) {
         title = edit;
         builder_message = edit_success;
         buttonRegister.setVisibility(View.GONE);
         buttonEdit.setVisibility(View.VISIBLE);
+        buttonDelete.setVisibility(View.VISIBLE);
         editTextEmail.setText(email);
         layoutEmail.setEnabled(false);
         editTextName.setText(name);
@@ -182,6 +209,20 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
     public void OnEditRequestFailure() {
         builder.setMessage(no_changes);
         builder.setPositiveButton(close, null);
+        builder.show();
+    }
+
+    @Override
+    public void OnAccountDeleted() {
+        builder.setTitle(delete);
+        builder.setMessage(delete_success);
+        builder.setPositiveButton(close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                setResult(RESULT_OK, new Intent().putExtra("logout", true));
+                finish();
+            }
+        });
         builder.show();
     }
 

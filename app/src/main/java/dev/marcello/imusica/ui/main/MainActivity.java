@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -135,8 +137,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
             case R.id.profile: {
-                startActivity(new Intent(this, RegisterActivity.class)
-                        .putExtra("edit", true)
+                startActivityForResult(
+                        (new Intent(this, RegisterActivity.class).putExtra("edit", true)),
+                        1
                 );
                 break;
             }
@@ -144,6 +147,16 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawerLayout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1){
+            if (resultCode == RESULT_OK){
+                presenter.OnVerifyUserDeleted(data.getBooleanExtra("logout",false));
+            }
+        }
     }
 
     @Override

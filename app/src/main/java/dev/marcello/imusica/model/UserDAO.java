@@ -123,6 +123,19 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
         return hashMap;
     }
 
+    @Override
+    public void DoDelete(String email) {
+        UserModel user = new UserModel();
+        user.setEmail(email);
+        if (database.Delete(user) == 1){
+            //Delete SharedPreferences
+            DoDeleteSharedPreferences();
+            taskListener.OnFailure("deleted");
+        }else {
+            taskListener.OnFailure("Error on delete user account.");
+        }
+    }
+
     private void DoSaveSharedPreferences(UserModel user) {
         sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();

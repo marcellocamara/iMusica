@@ -27,6 +27,12 @@
     <string name="update_error">Error on data update.</string>
     <string name="no_changes">No changes made.</string>
 
+    <!-- Delete -->
+    <string name="delete">Delete</string>
+    <string name="delete_account">Delete account</string>
+    <string name="delete_confirm">Are you sure want to delete this account?</string>
+    <string name="delete_success">Account successfully deleted.</string>
+
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -37,6 +43,8 @@
     <string name="logout">Logout</string>
 
     <!-- Dialogs / Alerts -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="close">Close</string>
     <string name="loading">Loading…</string>
     <string name="failure">Oops! Something went wrong.</string>
