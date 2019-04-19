@@ -6,7 +6,6 @@
     <string name="login">Login</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
-    <string name="remember">Remember me</string>
     <string name="click_to_register">Click here to register</string>
 
     <!-- Register -->
@@ -41,6 +40,11 @@
     <string name="language">Language</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+
+    <!-- Languages -->
+    <string name="language_choice">Language choice</string>
+    <string name="english">English</string>
+    <string name="portuguese">Portuguese</string>
 
     <!-- Dialogs / Alerts -->
     <string name="yes">Yes</string>

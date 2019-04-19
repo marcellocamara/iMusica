@@ -1,6 +1,7 @@
 package dev.marcello.imusica.ui.main;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -29,6 +29,8 @@ import dev.marcello.imusica.ui.home.HomeFragment;
 import dev.marcello.imusica.ui.language.LanguageFragment;
 import dev.marcello.imusica.ui.login.LoginActivity;
 import dev.marcello.imusica.ui.register.RegisterActivity;
+
+import static dev.marcello.imusica.util.LanguageUtil.changeLang;
 
 /**
  * Marcello Câmara
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity
     private IMainContract.Presenter presenter;
     private AlertDialog.Builder builder;
     private TextView textViewUserName, textViewUserEmail;
-    private boolean session;
     private ProgressDialog progressDialog;
 
     @Override
@@ -90,6 +91,12 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.home);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        Context context = changeLang(base);
+        super.attachBaseContext(context);
     }
 
     @Override

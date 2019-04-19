@@ -1,12 +1,15 @@
 package dev.marcello.imusica.ui.login;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import static dev.marcello.imusica.util.LanguageUtil.changeLang;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -51,6 +54,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        Context context = changeLang(base);
+        super.attachBaseContext(context);
     }
 
     @OnClick(R.id.btnLogin)

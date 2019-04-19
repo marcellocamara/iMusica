@@ -1,6 +1,7 @@
 package dev.marcello.imusica.ui.register;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+
+import static dev.marcello.imusica.util.LanguageUtil.changeLang;
 
 import java.util.Objects;
 
@@ -90,6 +93,12 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        Context context = changeLang(base);
+        super.attachBaseContext(context);
     }
 
     @OnClick(R.id.btnRegister)

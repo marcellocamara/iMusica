@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">iMusica</string>
+
+    <!-- Login -->
+    <string name="login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="click_to_register">Clique aqui para se registrar</string>
+
+    <!-- Register -->
+    <string name="register">Registrar</string>
+    <string name="name">Nome</string>
+    <string name="confirm_password">Confirme a senha</string>
+    <string name="invalid_email">Preencha com um e-mail válido.</string>
+    <string name="blank_email">E-mail não pode estar em branco.</string>
+    <string name="blank_name">Nome não pode estar em branco.</string>
+    <string name="blank_password">Senha não pode estar em branco.</string>
+    <string name="password_dont_match">As senhas não coincidem.</string>
+    <string name="register_success">Registrado com sucesso.</string>
+    <string name="email_already_registered">E-mail já cadastrado.</string>
+
+    <!-- Edit -->
+    <string name="edit">Editar</string>
+    <string name="edit_success">Editado com sucesso.</string>
+    <string name="update_error">Erro em atualizar os dados.</string>
+    <string name="no_changes">Nenhuma mudança realizada.</string>
+
+    <!-- Delete -->
+    <string name="delete">Deletar</string>
+    <string name="delete_account">Deletar conta</string>
+    <string name="delete_confirm">Você deseja deletar esta conta?</string>
+    <string name="delete_success">Conta deletada com sucesso.</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Abrir menu de navegação</string>
+    <string name="navigation_drawer_close">Fechar menu de navegação</string>
+    <string name="logo">iMusica Logo</string>
+    <string name="home">Principal</string>
+    <string name="language">Idioma</string>
+    <string name="profile">Perfil</string>
+    <string name="logout">Sair</string>
+
+    <!-- Languages -->
+    <string name="language_choice">Escolha de idioma</string>
+    <string name="english">Inglês</string>
+    <string name="portuguese">Português</string>
+
+    <!-- Dialogs / Alerts -->
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="close">Fechar</string>
+    <string name="loading">Carregando…</string>
+    <string name="failure">Ops! Algo deu errado.</string>
+
+</resources>
