@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity
 
         presenter = new MainPresenter(this, this);
 
-        session = getIntent().getBooleanExtra("session", false);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -197,7 +195,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.OnDestroy(session);
+        presenter.OnDestroy();
     }
 
 }

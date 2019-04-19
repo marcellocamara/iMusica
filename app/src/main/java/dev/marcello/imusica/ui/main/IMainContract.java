@@ -30,15 +30,13 @@ public interface IMainContract {
 
         void OnVerifyUserDeleted(boolean value);
 
-        void OnDestroy(boolean session);
+        void OnDestroy();
 
     }
 
     interface Model {
 
         void DoLogout();
-
-        void DoForceLogout();
 
         Map<String, String> DoGetUserData();
 

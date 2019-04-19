@@ -108,11 +108,6 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
     }
 
     @Override
-    public void DoForceLogout() {
-        DoDeleteSharedPreferences();
-    }
-
-    @Override
     public Map<String, String> DoGetUserData() {
         UserModel user = DoGetSharedPreferences();
         Map<String, String> hashMap = new HashMap<>();

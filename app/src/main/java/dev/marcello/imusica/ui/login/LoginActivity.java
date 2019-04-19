@@ -7,7 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.CheckBox;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -30,8 +29,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
 
     @BindView(R.id.editTextEmail) protected TextInputEditText editTextEmail;
     @BindView(R.id.editTextPassword) protected TextInputEditText editTextPassword;
-
-    @BindView(R.id.checkBox) protected CheckBox checkBox;
 
     @BindString(R.string.login) protected String login;
     @BindString(R.string.close) protected String close;
@@ -91,9 +88,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
 
     @Override
     public void OnLoginSuccess() {
-        startActivity(new Intent(this, MainActivity.class)
-                .putExtra("checkbox", checkBox.isChecked())
-        );
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
