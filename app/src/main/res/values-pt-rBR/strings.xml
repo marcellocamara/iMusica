@@ -53,5 +53,10 @@
     <string name="close">Fechar</string>
     <string name="loading">Carregando…</string>
     <string name="failure">Ops! Algo deu errado.</string>
+    <string name="okhttp">OkHttp</string>
+
+    <!-- Home -->
+    <string name="okhttp_failure">Falha ao checar URL.\nVerifique o endereço da URL ou sua conexão com a internet.</string>
+    <string name="retrofit_failure">Erro na resposta do Retrofit2.</string>
 
 </resources>
