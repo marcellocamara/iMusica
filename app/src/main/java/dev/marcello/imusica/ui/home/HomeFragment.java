@@ -4,16 +4,22 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
 import butterknife.BindString;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dev.marcello.imusica.R;
+import dev.marcello.imusica.adapter.IAdapter;
+import dev.marcello.imusica.adapter.PostsAdapter;
 import dev.marcello.imusica.model.PostsModel;
 
 /**
@@ -21,7 +27,9 @@ import dev.marcello.imusica.model.PostsModel;
  * 2019
  */
 
-public class HomeFragment extends Fragment implements IHome.View {
+public class HomeFragment extends Fragment implements IHome.View, IAdapter {
+
+    @BindView(R.id.recyclerView) protected RecyclerView recyclerView;
 
     @BindString(R.string.okhttp) protected String okhttp;
     @BindString(R.string.close) protected String close;
@@ -30,6 +38,7 @@ public class HomeFragment extends Fragment implements IHome.View {
 
     private IHome.Presenter presenter;
     private ProgressDialog progressDialog;
+    private List<PostsModel> posts;
     private AlertDialog.Builder builder;
     private Unbinder unbinder;
 
@@ -54,6 +63,10 @@ public class HomeFragment extends Fragment implements IHome.View {
         progressDialog.setMessage(loading);
         progressDialog.setCancelable(false);
 
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
         return view;
     }
 
@@ -74,9 +87,15 @@ public class HomeFragment extends Fragment implements IHome.View {
 
     @Override
     public void OnGetPostsRequestSuccess(List<PostsModel> list) {
-        builder.setMessage("Success.\nList size: " + list.size());
-        builder.setPositiveButton(close, null);
-        builder.show();
+        //Allow recyclerView data
+        this.posts = list;
+        PostsAdapter adapter = new PostsAdapter(this.posts, this);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        Toast.makeText(getContext(), "Item clicked: " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
