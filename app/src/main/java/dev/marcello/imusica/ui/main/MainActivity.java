@@ -38,7 +38,7 @@ import static dev.marcello.imusica.util.LanguageUtil.changeLang;
  */
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainContract.View, IMainContract.ScreenTitle {
 
     @BindView(R.id.navigationView) protected NavigationView navigationView;
 
@@ -88,9 +88,6 @@ public class MainActivity extends AppCompatActivity
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
-        navigationView.setCheckedItem(R.id.home);
     }
 
     @Override
@@ -130,9 +127,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home: {
+                HomeFragment homeFragment = new HomeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", textViewUserName.getText().toString());
+                homeFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frameLayout, new HomeFragment()).commit();
+                        .replace(R.id.frameLayout, homeFragment).commit();
                 break;
             }
             case R.id.language: {
@@ -168,6 +169,13 @@ public class MainActivity extends AppCompatActivity
     public void OnUserDataRequestSuccess(String name, String email) {
         textViewUserName.setText(name);
         textViewUserEmail.setText(email);
+        //Set initial fragment screen in frameLayout after get user data
+        HomeFragment homeFragment = new HomeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("name", name);
+        homeFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, homeFragment).commit();
+        navigationView.setCheckedItem(R.id.home);
     }
 
     @Override
@@ -181,6 +189,11 @@ public class MainActivity extends AppCompatActivity
         builder.setMessage(message);
         builder.setPositiveButton(close, null);
         builder.show();
+    }
+
+    @Override
+    public void SetTitle(String title) {
+        toolbar.setTitle(title);
     }
 
     @Override

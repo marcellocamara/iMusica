@@ -76,8 +76,9 @@ public class PostDAO implements IHome.Model {
     }
 
     @Override
-    public void DoCreatePost() {
-        Post post = new Post("New User","iMusica", 150, 150,1555661100);
+    public void DoCreatePost(String title, String author, long created) {
+        //Retrieve author name
+        Post post = new Post(author, title, 0, 0, created);
         retrofit2.Call<Post> call = api.Create(post);
         call.enqueue(new retrofit2.Callback<Post>() {
             @Override
@@ -97,9 +98,8 @@ public class PostDAO implements IHome.Model {
     }
 
     @Override
-    public void DoUpdatePost() {
-        //simulating an object to update while it's not finished
-        Post post = new Post("Author","iMusica", 150, 150,1555661100);
+    public void DoUpdatePost(String title, String author, long created, int ups, int comments) {
+        Post post = new Post(title, author, ups, comments, created);
         retrofit2.Call<Post> call = api.Update(post.getCreated(), post);
         call.enqueue(new retrofit2.Callback<Post>() {
             @Override
@@ -119,10 +119,8 @@ public class PostDAO implements IHome.Model {
     }
 
     @Override
-    public void DoDeletePost() {
-        //simulating an object to update while it's not finished
-        Post post = new Post("Author","iMusica", 150, 150,1555661100);
-        retrofit2.Call<Void> call = api.Delete(post.getCreated());
+    public void DoDeletePost(long created) {
+        retrofit2.Call<Void> call = api.Delete(created);
         call.enqueue(new retrofit2.Callback<Void>() {
             @Override
             public void onResponse(retrofit2.Call<Void> call, retrofit2.Response<Void> response) {

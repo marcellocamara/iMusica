@@ -12,6 +12,13 @@ public class PostsModel {
     @SerializedName("data")
     private Post post;
 
+    public PostsModel(){
+    }
+
+    public PostsModel(Post post){
+        this.post = post;
+    }
+
     public Post getPost() {
         return post;
     }

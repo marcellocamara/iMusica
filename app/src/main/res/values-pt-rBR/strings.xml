@@ -54,9 +54,18 @@
     <string name="loading">Carregando…</string>
     <string name="failure">Ops! Algo deu errado.</string>
     <string name="okhttp">OkHttp</string>
+    <string name="cancel">Cancelar</string>
+    <string name="create">Criar</string>
+    <string name="new_post">Novo Post</string>
+    <string name="post">Post</string>
 
     <!-- Home -->
     <string name="okhttp_failure">Falha ao checar URL.\nVerifique o endereço da URL ou sua conexão com a internet.</string>
     <string name="retrofit_failure">Erro na resposta do Retrofit2.</string>
+    <string name="create_failure">Falha ao criar post.\nTítulo não pode estar em branco.</string>
+    <string name="create_success">Post criado com sucesso.</string>
+    <string name="edit_post_success">Post editado com sucesso.</string>
+    <string name="edit_failure">Falha ao editar post.\nTítulo não pode estar em branco.</string>
+    <string name="delete_post_success">Post deletado com sucesso.</string>
 
 </resources>

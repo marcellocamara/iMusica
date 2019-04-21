@@ -53,10 +53,19 @@
     <string name="loading">Loading…</string>
     <string name="failure">Oops! Something went wrong.</string>
     <string name="okhttp">OkHttp</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <string name="new_post">New Post</string>
+    <string name="post">Post</string>
 
     <!-- Home -->
     <string name="posts" translatable="false">Posts</string>
     <string name="okhttp_failure">Failure on check URL.\nCheck URL address or your internet status.</string>
     <string name="retrofit_failure">Error on Retrofit2 response.</string>
+    <string name="create_failure">Create post failure.\nTitle cannot be blank.</string>
+    <string name="create_success">Successfully created post.</string>
+    <string name="edit_post_success">Successfully updated post.</string>
+    <string name="edit_failure">Edit post failure.\nTitle cannot be blank.</string>
+    <string name="delete_post_success">Successfully deleted post.</string>
 
 </resources>

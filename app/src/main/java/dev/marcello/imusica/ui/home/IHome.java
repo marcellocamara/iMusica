@@ -24,9 +24,15 @@ public interface IHome {
 
         void OnGetPostsRequestFailure(String message);
 
+        void OnCreatePostRequestFailure();
+
         void OnCreatePostRequestSuccess(Post post);
 
         void OnUpdatePostRequestSuccess(Post post);
+
+        void OnUpdatePostRequestNoChanges();
+
+        void OnUpdatePostRequestFailure();
 
         void OnDeletePostRequestSuccess();
 
@@ -38,11 +44,11 @@ public interface IHome {
 
         void DoGetPostsRequest();
 
-        void DoCreatePostRequest();
+        void DoCreatePostRequest(String title, String author, long created);
 
-        void DoUpdatePostRequest();
+        void DoUpdatePostRequest(String postTitle, String newTitle, String author, long created, int ups, int comments);
 
-        void DoDeletePostRequest();
+        void DoDeletePostRequest(long created);
 
         void OnDestroy();
 
@@ -54,11 +60,11 @@ public interface IHome {
 
         void DoReadPosts();
 
-        void DoCreatePost();
+        void DoCreatePost(String title, String author, long created);
 
-        void DoUpdatePost();
+        void DoUpdatePost(String title, String author, long created, int ups, int comments);
 
-        void DoDeletePost();
+        void DoDeletePost(long created);
 
     }
 

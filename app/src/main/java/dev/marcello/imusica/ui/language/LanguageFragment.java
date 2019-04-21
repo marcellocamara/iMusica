@@ -1,7 +1,9 @@
 package dev.marcello.imusica.ui.language;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import dev.marcello.imusica.R;
 import dev.marcello.imusica.ui.login.LoginActivity;
+import dev.marcello.imusica.ui.main.IMainContract;
 
 /**
  * Marcello
@@ -22,9 +25,16 @@ import dev.marcello.imusica.ui.login.LoginActivity;
 
 public class LanguageFragment extends Fragment {
 
+    private IMainContract.ScreenTitle screenTitle;
     private Unbinder unbinder;
 
     public LanguageFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        screenTitle.SetTitle(getString(R.string.language));
     }
 
     @Override
@@ -52,6 +62,12 @@ public class LanguageFragment extends Fragment {
         setLanguage(lang, getContext());
         getActivity().finish();
         startActivity(new Intent(getContext(), LoginActivity.class));
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        screenTitle = (IMainContract.ScreenTitle) getActivity();
     }
 
     @Override

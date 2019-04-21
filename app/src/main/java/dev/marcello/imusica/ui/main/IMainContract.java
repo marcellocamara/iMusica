@@ -42,4 +42,10 @@ public interface IMainContract {
 
     }
 
+    interface ScreenTitle {
+
+        void SetTitle(String title);
+
+    }
+
 }
