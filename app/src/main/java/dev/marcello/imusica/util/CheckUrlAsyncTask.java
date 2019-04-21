@@ -11,10 +11,10 @@ import dev.marcello.imusica.ui.ITaskListener;
 
 public class CheckUrlAsyncTask extends AsyncTask<Void, Void, Void> {
 
-    private ITaskListener.Post taskListener;
+    private ITaskListener.Posts taskListener;
     private boolean value;
 
-    public CheckUrlAsyncTask(ITaskListener.Post taskListener, boolean value){
+    public CheckUrlAsyncTask(ITaskListener.Posts taskListener, boolean value){
         this.taskListener = taskListener;
         this.value = value;
     }
@@ -27,7 +27,7 @@ public class CheckUrlAsyncTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        taskListener.OnResponse(value);
+        taskListener.OnOkHttpResponse(value);
     }
 
 }

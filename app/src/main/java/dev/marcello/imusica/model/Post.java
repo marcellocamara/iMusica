@@ -24,6 +24,17 @@ public class Post {
     @SerializedName("created")
     private long created;
 
+    public Post() {
+    }
+
+    public Post(String author, String title, int ups, int comments, long created) {
+        this.author = author;
+        this.title = title;
+        this.ups = ups;
+        this.comments = comments;
+        this.created = created;
+    }
+
     public String getAuthor() {
         return author;
     }

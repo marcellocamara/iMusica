@@ -2,6 +2,7 @@ package dev.marcello.imusica.ui;
 
 import java.util.List;
 
+import dev.marcello.imusica.model.Post;
 import dev.marcello.imusica.model.PostsModel;
 
 /**
@@ -19,11 +20,17 @@ public interface ITaskListener {
 
     }
 
-    interface Post {
+    interface Posts {
 
-        void OnSuccess(List<PostsModel> list);
+        void OnReadSuccess(List<PostsModel> list);
 
-        void OnResponse(boolean value);
+        void OnCreateSuccess(Post post);
+
+        void OnUpdateSuccess(Post post);
+
+        void OnDeleteSuccess();
+
+        void OnOkHttpResponse(boolean value);
 
         void OnFailure(String message);
 

@@ -10,7 +10,7 @@ import static dev.marcello.imusica.util.Constants.REDDIT_BASE_URL;
  * 2019
  */
 
-public class RedditAPI {
+public class RedditApi {
 
     private static Retrofit api;
 

@@ -55,6 +55,7 @@
     <string name="okhttp">OkHttp</string>
 
     <!-- Home -->
+    <string name="posts" translatable="false">Posts</string>
     <string name="okhttp_failure">Failure on check URL.\nCheck URL address or your internet status.</string>
     <string name="retrofit_failure">Error on Retrofit2 response.</string>
 

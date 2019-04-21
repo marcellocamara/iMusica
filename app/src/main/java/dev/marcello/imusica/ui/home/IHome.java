@@ -2,6 +2,7 @@ package dev.marcello.imusica.ui.home;
 
 import java.util.List;
 
+import dev.marcello.imusica.model.Post;
 import dev.marcello.imusica.model.PostsModel;
 import dev.marcello.imusica.ui.IProgress;
 import dev.marcello.imusica.ui.ITaskListener;
@@ -23,13 +24,25 @@ public interface IHome {
 
         void OnGetPostsRequestFailure(String message);
 
+        void OnCreatePostRequestSuccess(Post post);
+
+        void OnUpdatePostRequestSuccess(Post post);
+
+        void OnDeletePostRequestSuccess();
+
     }
 
-    interface Presenter extends ITaskListener.Post {
+    interface Presenter extends ITaskListener.Posts {
 
         void DoCheckUrlRequest();
 
         void DoGetPostsRequest();
+
+        void DoCreatePostRequest();
+
+        void DoUpdatePostRequest();
+
+        void DoDeletePostRequest();
 
         void OnDestroy();
 
@@ -39,7 +52,13 @@ public interface IHome {
 
         void DoCheckUrl();
 
-        void DoGetPosts();
+        void DoReadPosts();
+
+        void DoCreatePost();
+
+        void DoUpdatePost();
+
+        void DoDeletePost();
 
     }
 

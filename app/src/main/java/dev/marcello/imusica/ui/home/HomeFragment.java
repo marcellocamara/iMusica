@@ -20,6 +20,7 @@ import butterknife.Unbinder;
 import dev.marcello.imusica.R;
 import dev.marcello.imusica.adapter.IAdapter;
 import dev.marcello.imusica.adapter.PostsAdapter;
+import dev.marcello.imusica.model.Post;
 import dev.marcello.imusica.model.PostsModel;
 
 /**
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter {
 
     @BindView(R.id.recyclerView) protected RecyclerView recyclerView;
 
+    @BindString(R.string.posts) protected String posts;
     @BindString(R.string.okhttp) protected String okhttp;
     @BindString(R.string.close) protected String close;
     @BindString(R.string.loading) protected String loading;
@@ -38,7 +40,7 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter {
 
     private IHome.Presenter presenter;
     private ProgressDialog progressDialog;
-    private List<PostsModel> posts;
+    private List<PostsModel> list;
     private AlertDialog.Builder builder;
     private Unbinder unbinder;
 
@@ -56,7 +58,7 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter {
         presenter = new HomePresenter(this, getContext());
 
         builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Posts");
+        builder.setTitle(posts);
         builder.setCancelable(false);
 
         progressDialog = new ProgressDialog(getContext());
@@ -87,9 +89,9 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter {
 
     @Override
     public void OnGetPostsRequestSuccess(List<PostsModel> list) {
-        //Allow recyclerView data
-        this.posts = list;
-        PostsAdapter adapter = new PostsAdapter(this.posts, this);
+        //Allows show data on recyclerView
+        this.list = list;
+        PostsAdapter adapter = new PostsAdapter(this.list, this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -101,6 +103,39 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter {
     @Override
     public void OnGetPostsRequestFailure(String message) {
         builder.setMessage(message);
+        builder.setPositiveButton(close, null);
+        builder.show();
+    }
+
+    @Override
+    public void OnCreatePostRequestSuccess(Post post) {
+        builder.setMessage(
+                "Successfully created post." +
+                "\nTitle: " + post.getTitle() +
+                "\nAuthor: " + post.getAuthor() +
+                "\nCreated: " + post.getCreated() +
+                "\nUps: " + post.getUps() + " / Comments: " + post.getComments()
+        );
+        builder.setPositiveButton(close, null);
+        builder.show();
+    }
+
+    @Override
+    public void OnUpdatePostRequestSuccess(Post post) {
+        builder.setMessage(
+                "Successfully updated post." +
+                "\nTitle: " + post.getTitle() +
+                "\nAuthor: " + post.getAuthor() +
+                "\nCreated: " + post.getCreated() +
+                "\nUps: " + post.getUps() + " / Comments: " + post.getComments()
+        );
+        builder.setPositiveButton(close, null);
+        builder.show();
+    }
+
+    @Override
+    public void OnDeletePostRequestSuccess() {
+        builder.setMessage("Successfully deleted post.");
         builder.setPositiveButton(close, null);
         builder.show();
     }

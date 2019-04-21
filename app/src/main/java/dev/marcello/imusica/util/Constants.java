@@ -8,9 +8,9 @@ package dev.marcello.imusica.util;
 public class Constants {
 
     //Used in Retrofit2
-    public static final String REDDIT_BASE_URL = "https://api.reddit.com/r/";
+    public static final String REDDIT_BASE_URL = "http://private-5d8e01-imusica.apiary-mock.com/";
 
-    //Used in OkHttp
-    public static final String REDDIT_FULL_URL = REDDIT_BASE_URL + "artificial/hot";
+    //EndPoint used in OkHttp
+    public static final String REDDIT_FULL_URL = REDDIT_BASE_URL + "posts";
 
 }

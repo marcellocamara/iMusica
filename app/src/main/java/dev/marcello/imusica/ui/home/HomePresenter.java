@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import dev.marcello.imusica.model.ChildrenModel;
+import dev.marcello.imusica.model.Post;
 import dev.marcello.imusica.model.PostDAO;
 import dev.marcello.imusica.model.PostsModel;
 
@@ -32,7 +32,25 @@ public class HomePresenter implements IHome.Presenter {
     @Override
     public void DoGetPostsRequest() {
         view.ShowProgress();
-        model.DoGetPosts();
+        model.DoReadPosts();
+    }
+
+    @Override
+    public void DoCreatePostRequest() {
+        view.ShowProgress();
+        model.DoCreatePost();
+    }
+
+    @Override
+    public void DoUpdatePostRequest() {
+        view.ShowProgress();
+        model.DoUpdatePost();
+    }
+
+    @Override
+    public void DoDeletePostRequest() {
+        view.ShowProgress();
+        model.DoDeletePost();
     }
 
     @Override
@@ -41,7 +59,7 @@ public class HomePresenter implements IHome.Presenter {
     }
 
     @Override
-    public void OnSuccess(List<PostsModel> list) {
+    public void OnReadSuccess(List<PostsModel> list) {
         if (view != null){
             view.HideProgress();
             view.OnGetPostsRequestSuccess(list);
@@ -49,7 +67,31 @@ public class HomePresenter implements IHome.Presenter {
     }
 
     @Override
-    public void OnResponse(boolean value) {
+    public void OnCreateSuccess(Post post) {
+        if (view!=null){
+            view.HideProgress();
+            view.OnCreatePostRequestSuccess(post);
+        }
+    }
+
+    @Override
+    public void OnUpdateSuccess(Post post) {
+        if (view!=null){
+            view.HideProgress();
+            view.OnUpdatePostRequestSuccess(post);
+        }
+    }
+
+    @Override
+    public void OnDeleteSuccess() {
+        if (view!=null){
+            view.HideProgress();
+            view.OnDeletePostRequestSuccess();
+        }
+    }
+
+    @Override
+    public void OnOkHttpResponse(boolean value) {
         if (view != null){
             view.HideProgress();
             if (value){
