@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="leftParentGuideLine">0.25</dimen>
+    <dimen name="rightParentGuideLine">0.75</dimen>
+
+</resources>

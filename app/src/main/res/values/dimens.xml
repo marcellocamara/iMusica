@@ -5,7 +5,10 @@
 
     <dimen name="CornerRadius">16dp</dimen>
 
-    <dimen name="leftGuideLine">0.05</dimen>
-    <dimen name="rightGuideLine">0.95</dimen>
+    <dimen name="leftParentGuideLine">0.05</dimen>
+    <dimen name="rightParentGuideLine">0.95</dimen>
+
+    <dimen name="leftCardViewGuideLine">0.05</dimen>
+    <dimen name="rightCardViewGuideLine">0.95</dimen>
 
 </resources>
