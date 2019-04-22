@@ -90,11 +90,13 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter, IDia
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
+        presenter.DoCheckUrlRequest();
+
         return view;
     }
 
     @OnClick(R.id.faButton)
-    public void OnFloatingActionButtonClick(){
+    public void OnFloatingActionButtonClick() {
         PostDialog dialog = new PostDialog();
         Bundle bundle = new Bundle();
         bundle.putBoolean("new", true);
@@ -238,7 +240,6 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter, IDia
     @Override
     public void onStart() {
         super.onStart();
-        presenter.DoCheckUrlRequest();
         presenter.DoGetUserNameRequest();
     }
 

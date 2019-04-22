@@ -71,4 +71,8 @@
     <string name="edit_failure">Falha ao editar post.\nTítulo não pode estar em branco.</string>
     <string name="delete_post_success">Post deletado com sucesso.</string>
 
+    <!-- Notification -->
+    <string name="inactivity_title">Inatividade</string>
+    <string name="inactivity_message">Você teve 20 segundos de inatividade.\nClique para carregar todas as postagens novamente.</string>
+
 </resources>

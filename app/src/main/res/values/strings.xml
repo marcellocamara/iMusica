@@ -72,4 +72,8 @@
     <string name="edit_failure">Edit post failure.\nTitle cannot be blank.</string>
     <string name="delete_post_success">Successfully deleted post.</string>
 
+    <!-- Notification -->
+    <string name="inactivity_title">Inactivity</string>
+    <string name="inactivity_message">You had 20 seconds of inactivity.\nClick to reload all posts.</string>
+
 </resources>

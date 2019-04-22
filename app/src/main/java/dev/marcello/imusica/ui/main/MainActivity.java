@@ -81,9 +81,6 @@ public class MainActivity extends AppCompatActivity
         textViewUserName = headerView.findViewById(R.id.textViewUserName);
         textViewUserEmail = headerView.findViewById(R.id.textViewUserEmail);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
-        navigationView.setCheckedItem(R.id.home);
-
         builder = new AlertDialog.Builder(this);
         builder.setTitle(logout);
         builder.setCancelable(false);
@@ -130,13 +127,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home: {
-                HomeFragment homeFragment = new HomeFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("name", textViewUserName.getText().toString());
-                homeFragment.setArguments(bundle);
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.frameLayout, homeFragment).commit();
+                        .replace(R.id.frameLayout, new HomeFragment()).commit();
                 break;
             }
             case R.id.language: {
@@ -161,9 +154,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1){
-            if (resultCode == RESULT_OK){
-                presenter.OnVerifyUserDeleted(data.getBooleanExtra("logout",false));
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                presenter.OnVerifyUserDeleted(data.getBooleanExtra("logout", false));
             }
         }
     }
@@ -206,6 +199,15 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         presenter.OnUserDataRequest();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frameLayout, new HomeFragment()).commit();
+        navigationView.setCheckedItem(R.id.home);
     }
 
     @Override
