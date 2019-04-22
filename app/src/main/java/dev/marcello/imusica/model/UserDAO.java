@@ -80,10 +80,10 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
                 DoSaveSharedPreferences(user);
                 taskListener.OnSuccess();
             } else {
-                taskListener.OnFailure("Wrong password.");
+                taskListener.OnFailure(context.getString(R.string.password_fail));
             }
         } else {
-            taskListener.OnFailure("This e-mail is not registered.");
+            taskListener.OnFailure(context.getString(R.string.email_exists));
         }
     }
 
@@ -122,12 +122,12 @@ public class UserDAO implements IRegisterContract.Model, ILoginContract.Model, I
     public void DoDelete(String email) {
         UserModel user = new UserModel();
         user.setEmail(email);
-        if (database.Delete(user) == 1){
+        if (database.Delete(user) == 1) {
             //Delete SharedPreferences
             DoDeleteSharedPreferences();
             taskListener.OnFailure("deleted");
-        }else {
-            taskListener.OnFailure("Error on delete user account.");
+        } else {
+            taskListener.OnFailure(context.getString(R.string.delete_error));
         }
     }
 

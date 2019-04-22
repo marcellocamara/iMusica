@@ -7,6 +7,8 @@
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="click_to_register">Click here to register</string>
+    <string name="password_fail">Wrong password.</string>
+    <string name="email_exists">This e-mail is not registered.</string>
 
     <!-- Register -->
     <string name="register">Register</string>
@@ -31,6 +33,7 @@
     <string name="delete_account">Delete account</string>
     <string name="delete_confirm">Are you sure want to delete this account?</string>
     <string name="delete_success">Account successfully deleted.</string>
+    <string name="delete_error">Error on delete user account.</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>

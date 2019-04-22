@@ -8,6 +8,8 @@
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
     <string name="click_to_register">Clique aqui para se registrar</string>
+    <string name="password_fail">Password incorreto.</string>
+    <string name="email_exists">Este e-mail não está registrado.</string>
 
     <!-- Register -->
     <string name="register">Registrar</string>
@@ -32,6 +34,7 @@
     <string name="delete_account">Deletar conta</string>
     <string name="delete_confirm">Você deseja deletar esta conta?</string>
     <string name="delete_success">Conta deletada com sucesso.</string>
+    <string name="delete_error">Erro ao deletar esta conta.</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Abrir menu de navegação</string>
