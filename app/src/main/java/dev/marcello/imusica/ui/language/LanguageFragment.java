@@ -50,16 +50,16 @@ public class LanguageFragment extends Fragment {
 
     @OnClick(R.id.btnEnglish)
     public void OnButtonEnglishClick() {
-        changeLanguage("en");
+        changeLanguage("en", "US");
     }
 
     @OnClick(R.id.btnPortuguese)
     public void OnButtonPortugueseClick() {
-        changeLanguage("pt");
+        changeLanguage("pt", "BR");
     }
 
-    private void changeLanguage(String lang) {
-        setLanguage(lang, getContext());
+    private void changeLanguage(String localeCode, String countryCode) {
+        setLanguage(localeCode, countryCode, getContext());
         getActivity().finish();
         startActivity(new Intent(getContext(), LoginActivity.class));
     }

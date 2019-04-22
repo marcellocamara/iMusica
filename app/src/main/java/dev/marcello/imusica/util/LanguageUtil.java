@@ -5,7 +5,6 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 
 import java.util.Locale;
 
@@ -20,29 +19,32 @@ public class LanguageUtil {
     private static final String FILE_NAME = "Language";
 
     public static ContextWrapper changeLang(Context context) {
-        String langCode = getLanguage(context);
+        String localeCode = getLocaleCode(context);
+        String countryCode = getCountryCode(context);
         Resources resources = context.getResources();
         Configuration configuration = resources.getConfiguration();
-        Locale locale = new Locale(langCode);
+        Locale locale = new Locale(localeCode, countryCode);
         Locale.setDefault(locale);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            configuration.setLocale(locale);
-        } else {
-            configuration.locale = locale;
-        }
+        configuration.setLocale(locale);
         context = context.createConfigurationContext(configuration);
         return new ContextWrapper(context);
     }
 
-    private static String getLanguage(Context context) {
+    private static String getLocaleCode(Context context) {
         sharedPreferences = context.getSharedPreferences(FILE_NAME, context.MODE_PRIVATE);
         return sharedPreferences.getString("locale", "en");
     }
 
-    public static void setLanguage(String locale, Context context) {
+    private static String getCountryCode(Context context) {
+        sharedPreferences = context.getSharedPreferences(FILE_NAME, context.MODE_PRIVATE);
+        return sharedPreferences.getString("country", "US");
+    }
+
+    public static void setLanguage(String locale, String countryCode, Context context) {
         sharedPreferences = context.getSharedPreferences(FILE_NAME, context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("locale", locale);
+        editor.putString("country", countryCode);
         editor.apply();
     }
 
