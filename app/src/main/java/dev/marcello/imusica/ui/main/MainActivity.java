@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity
         textViewUserName = headerView.findViewById(R.id.textViewUserName);
         textViewUserEmail = headerView.findViewById(R.id.textViewUserEmail);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+        navigationView.setCheckedItem(R.id.home);
+
         builder = new AlertDialog.Builder(this);
         builder.setTitle(logout);
         builder.setCancelable(false);
@@ -169,13 +172,6 @@ public class MainActivity extends AppCompatActivity
     public void OnUserDataRequestSuccess(String name, String email) {
         textViewUserName.setText(name);
         textViewUserEmail.setText(email);
-        //Set initial fragment screen in frameLayout after get user data
-        HomeFragment homeFragment = new HomeFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("name", name);
-        homeFragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, homeFragment).commit();
-        navigationView.setCheckedItem(R.id.home);
     }
 
     @Override

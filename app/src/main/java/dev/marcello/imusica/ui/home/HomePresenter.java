@@ -31,6 +31,11 @@ public class HomePresenter implements IHome.Presenter {
     }
 
     @Override
+    public void DoGetUserNameRequest() {
+        view.DoGetUserNameRequestSuccess(model.DoGetUserName());
+    }
+
+    @Override
     public void DoGetPostsRequest() {
         view.ShowProgress();
         model.DoReadPosts();

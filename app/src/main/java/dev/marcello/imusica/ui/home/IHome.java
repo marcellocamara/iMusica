@@ -20,6 +20,8 @@ public interface IHome {
 
         void OnCheckUrlRequestFailure();
 
+        void DoGetUserNameRequestSuccess(String name);
+
         void OnGetPostsRequestSuccess(List<PostsModel> list);
 
         void OnGetPostsRequestFailure(String message);
@@ -42,6 +44,8 @@ public interface IHome {
 
         void DoCheckUrlRequest();
 
+        void DoGetUserNameRequest();
+
         void DoGetPostsRequest();
 
         void DoCreatePostRequest(String title, String author, long created);
@@ -57,6 +61,8 @@ public interface IHome {
     interface Model {
 
         void DoCheckUrl();
+
+        String DoGetUserName();
 
         void DoReadPosts();
 

@@ -1,6 +1,7 @@
 package dev.marcello.imusica.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.io.IOException;
 
@@ -54,6 +55,12 @@ public class PostDAO implements IHome.Model {
                 }
             }
         });
+    }
+
+    @Override
+    public String DoGetUserName() {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Auth", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("name", "");
     }
 
     @Override

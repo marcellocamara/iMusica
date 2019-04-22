@@ -65,10 +65,6 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter, IDia
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            userName = bundle.getString("name");
-        }
         screenTitle.SetTitle(getString(R.string.home));
     }
 
@@ -121,6 +117,11 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter, IDia
         builder.setCancelable(false);
         builder.setPositiveButton(close, null);
         builder.show();
+    }
+
+    @Override
+    public void DoGetUserNameRequestSuccess(String name) {
+        this.userName = name;
     }
 
     @Override
@@ -238,6 +239,7 @@ public class HomeFragment extends Fragment implements IHome.View, IAdapter, IDia
     public void onStart() {
         super.onStart();
         presenter.DoCheckUrlRequest();
+        presenter.DoGetUserNameRequest();
     }
 
     @Override
