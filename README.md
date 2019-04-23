@@ -166,3 +166,7 @@ Ao fazer login na aplicação, um thread se inicia contando o tempo de inativida
 - [Retrofit2](https://square.github.io/retrofit/)
 - [SQLite](https://github.com/mackyle/sqlite)
 - [SQLiteBrowser](https://github.com/sqlitebrowser/sqlitebrowser)
+
+<p align="center">
+  <img src="https://github.com/marcellocamara/iMusica/blob/master/app/src/main/ic_launcher-web.png" height="128" title="Ícone">
+</p>
