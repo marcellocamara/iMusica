@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import static dev.marcello.imusica.util.LanguageUtil.changeLang;
 
 import java.util.Objects;
@@ -107,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
         layoutName.setErrorEnabled(false);
         layoutPassword1.setErrorEnabled(false);
         layoutPassword2.setErrorEnabled(false);
+        UIUtil.hideKeyboard(this);
         presenter.OnRegisterRequest(
                 editTextEmail.getText().toString().trim(),
                 editTextName.getText().toString().trim(),
@@ -127,6 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
                 editTextPassword1.getText().toString().trim(),
                 editTextPassword2.getText().toString().trim()
         );
+        UIUtil.hideKeyboard(this);
     }
 
     @OnClick(R.id.btnDelete)
@@ -143,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterCont
         confirm.setNegativeButton(no, null);
         confirm.setCancelable(false);
         confirm.show();
+        UIUtil.hideKeyboard(this);
     }
 
     @Override

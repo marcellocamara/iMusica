@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -88,6 +90,7 @@ public class PostDialog extends DialogFragment {
                     .setPositiveButton(R.string.create, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            UIUtil.hideKeyboard(getActivity());
                             dialogListener.OnCreate(editTextTitle.getText().toString(), created);
                             dialog.dismiss();
                         }
@@ -100,6 +103,7 @@ public class PostDialog extends DialogFragment {
                     .setNeutralButton(getContext().getString(R.string.delete), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            UIUtil.hideKeyboard(getActivity());
                             dialogListener.OnDelete(created);
                             dialog.dismiss();
                         }
@@ -107,6 +111,7 @@ public class PostDialog extends DialogFragment {
                     .setNegativeButton(getContext().getString(R.string.edit), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            UIUtil.hideKeyboard(getActivity());
                             dialogListener.OnUpdate(
                                     editTextTitle.getText().toString(),
                                     textViewAuthor.getText().toString(),

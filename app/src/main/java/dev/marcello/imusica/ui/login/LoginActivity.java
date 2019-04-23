@@ -9,6 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import static dev.marcello.imusica.util.LanguageUtil.changeLang;
 
 import butterknife.BindString;
@@ -66,6 +68,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginContract.V
     public void OnButtonLoginClick(){
         layoutEmail.setErrorEnabled(false);
         layoutPassword.setErrorEnabled(false);
+        UIUtil.hideKeyboard(this);
         presenter.OnLoginRequest(
                 editTextEmail.getText().toString().trim(),
                 editTextPassword.getText().toString().trim()
