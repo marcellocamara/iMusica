@@ -72,7 +72,7 @@
     <string name="delete_post_success">Post deletado com sucesso.</string>
 
     <!-- Notification -->
-    <string name="inactivity_title">Inatividade</string>
-    <string name="inactivity_message">Você teve 20 segundos de inatividade.\nClique para carregar todas as postagens novamente.</string>
+    <string name="inactivity_title">Inatividade detectada</string>
+    <string name="inactivity_message">Clique para fechar</string>
 
 </resources>

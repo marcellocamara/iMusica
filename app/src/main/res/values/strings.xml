@@ -73,7 +73,7 @@
     <string name="delete_post_success">Successfully deleted post.</string>
 
     <!-- Notification -->
-    <string name="inactivity_title">Inactivity</string>
-    <string name="inactivity_message">You had 20 seconds of inactivity.\nClick to reload all posts.</string>
+    <string name="inactivity_title">Inactivity detected</string>
+    <string name="inactivity_message">Click to close</string>
 
 </resources>

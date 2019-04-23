@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -29,6 +30,8 @@ import dev.marcello.imusica.ui.home.HomeFragment;
 import dev.marcello.imusica.ui.language.LanguageFragment;
 import dev.marcello.imusica.ui.login.LoginActivity;
 import dev.marcello.imusica.ui.register.RegisterActivity;
+import dev.marcello.imusica.util.Constants;
+import dev.marcello.imusica.util.NotificationUtil;
 
 import static dev.marcello.imusica.util.LanguageUtil.changeLang;
 
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity
     private AlertDialog.Builder builder;
     private TextView textViewUserName, textViewUserEmail;
     private ProgressDialog progressDialog;
+    private Handler handler;
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +93,14 @@ public class MainActivity extends AppCompatActivity
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
+
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                NotificationUtil.Send(MainActivity.this);
+            }
+        };
     }
 
     @Override
@@ -199,6 +212,7 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         presenter.OnUserDataRequest();
+        beginCount();
     }
 
     @Override
@@ -208,6 +222,27 @@ public class MainActivity extends AppCompatActivity
                 .beginTransaction()
                 .replace(R.id.frameLayout, new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.home);
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        stopCount();
+        beginCount();
+    }
+
+    private void beginCount() {
+        handler.postDelayed(runnable, Constants.DELAY);
+    }
+
+    private void stopCount() {
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopCount();
     }
 
     @Override
