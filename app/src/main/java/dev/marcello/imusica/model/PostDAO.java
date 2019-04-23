@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 import java.io.IOException;
 
 import dev.marcello.imusica.R;
-import dev.marcello.imusica.api.IRedditApiCRUD;
-import dev.marcello.imusica.api.RedditApi;
+import dev.marcello.imusica.api.IApiaryApiCRUD;
+import dev.marcello.imusica.api.ApiaryApi;
 import dev.marcello.imusica.ui.ITaskListener;
 import dev.marcello.imusica.ui.home.IHome;
 import dev.marcello.imusica.util.CheckUrlAsyncTask;
@@ -26,7 +26,7 @@ import static dev.marcello.imusica.util.Constants.REDDIT_FULL_URL;
 
 public class PostDAO implements IHome.Model {
 
-    private IRedditApiCRUD api = RedditApi.getAPIClient().create(IRedditApiCRUD.class);
+    private IApiaryApiCRUD api = ApiaryApi.getAPIClient().create(IApiaryApiCRUD.class);
     private Context context;
     private ITaskListener.Posts taskListener;
 

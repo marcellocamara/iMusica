@@ -17,7 +17,7 @@ import retrofit2.http.Path;
  * 2019
  */
 
-public interface IRedditApiCRUD {
+public interface IApiaryApiCRUD {
 
     @POST("posts")
     Call<Post> Create(@Body Post post);
